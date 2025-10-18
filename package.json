@@ -1,15 +1,17 @@
 {
-  "name": "<NAME>",
-  "description": "Description for package <NAME>",
+  "name": "@FMI-MediaMaster/load-dotenv",
+  "description": "Loads .env and NODE_ENV",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "license": "MIT",
   "packageManager": "pnpm@10.18.3",
   "type": "module",
   "repository": {
-    "url": "<REPO_URL>"
+    "url": "https://github.com/FMI-MediaMaster/LoadDotenv.git"
   },
-  "keywords": [],
+  "keywords": [
+    "dotenv"
+  ],
   "scripts": {
     "build": "rm -rf dist/* && tsc -p tsconfig.json",
     "lint": "eslint_d src",
@@ -21,5 +23,8 @@
     "eslint": "^9.37.0",
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.46.1"
+  },
+  "dependencies": {
+    "dotenv": "^17.2.3"
   }
 }
