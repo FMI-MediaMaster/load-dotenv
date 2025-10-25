@@ -8,11 +8,11 @@
   },
   "shell": {
     "init_hook": [
-      "pnpm install"
+      "pnpm install",
+      "git remote get-url npm-template >/dev/null 2>&1 || git remote add -f npm-template https://github.com/FMI-MediaMaster/NpmTemplate.git",
     ],
     "scripts": {
-      "build":   "pnpm run build",
-      "publish": "pnpm publish --access public"
+      "build":   "pnpm run build"
     }
   }
 }
