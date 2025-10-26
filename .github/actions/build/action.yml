@@ -11,6 +11,14 @@ inputs:
     description: "PNPM version to use"
     required: true
 
+  registry-url:
+    description: "Registry URL to use"
+    required: true
+    
+  scope:
+    description: "Scope to use"
+    required: true 
+
 runs:
   using: 'composite'
   steps:
@@ -18,7 +26,8 @@ runs:
       uses: actions/setup-node@v4
       with:
         node-version: ${{ inputs.nodejs-version }}
-        scope: '@FMI-MediaMaster'
+        registry-url: ${{ inputs.registry-url }}
+        scope: ${{ inputs.scope }}
 
     - name: Install pnpm 
       uses: pnpm/action-setup@v4
