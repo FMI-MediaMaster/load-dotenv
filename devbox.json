@@ -1,7 +1,7 @@
 {
   "packages": [
-    "nodejs@22.9.0",
-    "eslint_d@14.3.0"
+    "eslint_d@14.3.0",
+    "nodejs@24.10.0"
   ],
   "env": {
     "DEVBOX_COREPACK_ENABLED": "true"
@@ -9,10 +9,10 @@
   "shell": {
     "init_hook": [
       "pnpm install",
-      "git remote get-url npm-template >/dev/null 2>&1 || git remote add -f npm-template https://github.com/FMI-MediaMaster/NpmTemplate.git",
+      "git remote get-url npm-template >/dev/null 2>&1 || git remote add -f npm-template https://github.com/FMI-MediaMaster/NpmTemplate.git"
     ],
     "scripts": {
-      "build":   "pnpm run build"
+      "build": "pnpm run build"
     }
   }
 }

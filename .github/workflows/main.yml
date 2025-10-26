@@ -15,12 +15,12 @@ permissions:
 
 jobs:
   build:
-    name: Build npm package
-    if: "!startsWith(github.ref, 'refs/tags/')"
-    uses: ./.github/workflows/build.yml
+    runs-on: ubuntu-latest
+    steps:
+      - name: Build npm package
+        uses: ./.github/actions/build
 
-  publish:
-    name: Publish npm package to Github
-    if: startsWith(github.ref, 'refs/tags/')
-    uses: ./.github/workflows/publish.yml
+      - name: Publish npm package
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: ./.github/actions/publish
 

@@ -1,0 +1,30 @@
+name: 'Build npm package'
+
+description: 'Checks out the repository, sets up Node.js with pnpm, installs dependencies, and builds the package.'
+
+inputs:
+
+outputs:
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Checkout
+      uses: actions/checkout@v5
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '24.x'
+        registry-url: 'https://npm.pkg.github.com'
+        scope: '@FMI-MediaMaster'
+
+    - name: Install pnpm 
+      uses: pnpm/action-setup@v4
+
+    - name: Install dependencies
+      run: pnpm install
+
+    - name: Build package
+      run: pnpm run build
+
