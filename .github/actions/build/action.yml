@@ -2,10 +2,6 @@ name: 'Build npm package'
 
 description: 'Checks out the repository, sets up Node.js with pnpm, installs dependencies, and builds the package.'
 
-inputs:
-
-outputs:
-
 runs:
   using: 'composite'
   steps:

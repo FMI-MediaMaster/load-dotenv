@@ -2,10 +2,6 @@ name: 'Publish npm package package to GitHub Packages Registry'
 
 description: 'Builds the package, sets the version from the Git tag, creates a GitHub release, and publishes the package to the GitHub Packages Registry.'
 
-inputs:
-
-outputs:
-
 runs:
   using: 'composite'
   steps:
