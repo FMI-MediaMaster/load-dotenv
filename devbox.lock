@@ -49,6 +49,54 @@
         }
       }
     },
+    "fixjson@latest": {
+      "last_modified": "2025-10-07T08:41:47Z",
+      "resolved": "github:NixOS/nixpkgs/bce5fe2bb998488d8e7e7856315f90496723793c#fixjson",
+      "source": "devbox-search",
+      "version": "1.1.2-unstable-2021-01-05",
+      "systems": {
+        "aarch64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/2a3bqvsfwjbr5iwrwzkps9zwfyw7j3kc-fixjson-1.1.2-unstable-2021-01-05",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/2a3bqvsfwjbr5iwrwzkps9zwfyw7j3kc-fixjson-1.1.2-unstable-2021-01-05"
+        },
+        "aarch64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/g9sqv0yjgcnzw1z71qw3ri8kqg81bdpc-fixjson-1.1.2-unstable-2021-01-05",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/g9sqv0yjgcnzw1z71qw3ri8kqg81bdpc-fixjson-1.1.2-unstable-2021-01-05"
+        },
+        "x86_64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/916g9qcxikx309w9a8i7w90zjzgrln5c-fixjson-1.1.2-unstable-2021-01-05",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/916g9qcxikx309w9a8i7w90zjzgrln5c-fixjson-1.1.2-unstable-2021-01-05"
+        },
+        "x86_64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/ky87mrg984da8ai520q33pr3v3k64rcj-fixjson-1.1.2-unstable-2021-01-05",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/ky87mrg984da8ai520q33pr3v3k64rcj-fixjson-1.1.2-unstable-2021-01-05"
+        }
+      }
+    },
     "github:NixOS/nixpkgs/nixpkgs-unstable": {
       "last_modified": "2025-10-15T05:07:43Z",
       "resolved": "github:NixOS/nixpkgs/82c2e0d6dde50b17ae366d2aa36f224dc19af469?lastModified=1760504863&narHash=sha256-h13YFQMi91nXkkRoJMIfezorz5SbD6849jw5L0fjK4I%3D"
