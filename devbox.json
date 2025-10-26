@@ -9,10 +9,15 @@
   "shell": {
     "init_hook": [
       "pnpm install",
-      "git remote get-url npm-template >/dev/null 2>&1 || git remote add -f npm-template https://github.com/FMI-MediaMaster/NpmTemplate.git"
+      "export REPO_URL=$(git config --get remote.origin.url)",
+      "export PACKAGE_NAME=$(basename -s .git $REPO_URL | tr '[:upper:]' '[:lower:]')",
+      "git remote get-url npm-template >/dev/null 2>&1 || git remote add -f npm-template https://github.com/FMI-MediaMaster/NpmTemplate.git",
+      "grep -q '\"name\": \"@FMI-MediaMaster/<NAME>\"' package.json && sed -i \"s|<NAME>|$PACKAGE_NAME|g\" package.json",
+      "grep -q '\"url\": \"<REPO_URL>\"' package.json && sed -i \"s|<REPO_URL>|$REPO_URL|g\" package.json",
+      "grep -q 'Description for package' package.json && echo -e \"\n!! Please remember to change the project description in package.json !!\" >&2"
     ],
     "scripts": {
-      "build": "pnpm run build"
+      "build": "pnpm run build",
     }
   }
 }
