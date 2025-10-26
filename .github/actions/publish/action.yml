@@ -40,7 +40,7 @@ runs:
       if: ${{ inputs.type == 'NPM' }}
       shell: bash
       run: |
-        pnpm pkg set name="@mediamaster.org/${{ env.PACKAGE_NAME }}"
+        pnpm pkg set name="@media-master/${{ env.PACKAGE_NAME }}"
         pnpm pkg set publishConfig.registry="https://registry.npmjs.org/"
         pnpm publish --access public --no-git-checks
       env:

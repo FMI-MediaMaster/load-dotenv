@@ -28,7 +28,7 @@ jobs:
 
           - type: 'NPM'
             registry-url: 'https://registry.npmjs.org'
-            scope: '@mediamaster.org'
+            scope: '@media-master'
 
     name: Build & Push (${{ matrix.config.type }})
     steps:
