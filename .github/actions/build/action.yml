@@ -2,13 +2,18 @@ name: 'Build npm package'
 
 description: 'Checks out the repository, sets up Node.js with pnpm, installs dependencies, and builds the package.'
 
+inputs:
+  nodejs-version:
+    description: "Node.js version to use"
+    required: true
+
 runs:
   using: 'composite'
   steps:
     - name: Setup Node.js
       uses: actions/setup-node@v3
       with:
-        node-version: '24.x'
+        node-version: ${{ inputs.nodejs-version }}
         registry-url: 'https://npm.pkg.github.com'
         scope: '@FMI-MediaMaster'
 
