@@ -25,11 +25,18 @@ jobs:
         run: |
           NODEJS_VERSION=$(jq -r '.packages[] | select(startswith("nodejs@")) | split("@")[1]' devbox.json)
           echo "NODEJS_VERSION=$NODEJS_VERSION" >> $GITHUB_ENV
+              
+      - name: Get PNPM version
+        shell: bash
+        run: |
+          PNPM_VERSION=$(jq -r '.packageManager | split("@")[1]' package.json)
+          echo "PNPM_VERSION=$PNPM_VERSION" >> $GITHUB_ENV
         
       - name: Build npm package
         uses: ./.github/actions/build
         with:
           nodejs-version: ${{ env.NODEJS_VERSION }}
+          pnpm-version: ${{ env.PNPM_VERSION }}
 
       - name: Publish npm package
         if: startsWith(github.ref, 'refs/tags/')
