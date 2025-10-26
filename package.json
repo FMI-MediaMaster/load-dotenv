@@ -9,9 +9,6 @@
   "repository": {
     "url": "<REPO_URL>"
   },
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/"
-  },
   "keywords": [],
   "scripts": {
     "build": "rm -rf dist/* && tsc -p tsconfig.json",
