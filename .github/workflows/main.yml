@@ -1,4 +1,4 @@
-name: CI/CD workflow
+name: CI/CD Workflow
 
 on: 
   push:
@@ -14,7 +14,7 @@ permissions:
   pull-requests: write
 
 jobs:
-  build:
+  build-publish:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
