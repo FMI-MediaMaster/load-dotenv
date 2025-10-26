@@ -17,7 +17,7 @@
       "grep -q 'Description for package' package.json && echo -e \"\n!! Please remember to change the project description in package.json !!\" >&2"
     ],
     "scripts": {
-      "build": "pnpm run build",
+      "build": "pnpm run build"
     }
   }
 }
