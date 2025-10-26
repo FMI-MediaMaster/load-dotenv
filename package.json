@@ -1,5 +1,5 @@
 {
-  "name": "@FMI-MediaMaster/<NAME>",
+  "name": "<NAME>",
   "description": "Description for package <NAME>",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
