@@ -34,4 +34,6 @@ jobs:
       - name: Publish npm package
         if: startsWith(github.ref, 'refs/tags/')
         uses: ./.github/actions/publish
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }} 
 
