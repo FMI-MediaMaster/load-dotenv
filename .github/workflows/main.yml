@@ -25,10 +25,14 @@ jobs:
           - type: 'Github'
             registry-url: 'https://npm.pkg.github.com'
             scope: '@FMI-MediaMaster'
+            create-new-release: true
+            publish-args: ""
 
           - type: 'NPM'
             registry-url: 'https://registry.npmjs.org'
             scope: '@media-master'
+            create-new-release: false
+            publish-args: "--access public"
 
     name: Build & Push (${{ matrix.config.type }})
     steps:
@@ -46,6 +50,10 @@ jobs:
         run: |
           PNPM_VERSION=$(jq -r '.packageManager | split("@")[1]' package.json)
           echo "PNPM_VERSION=$PNPM_VERSION" >> $GITHUB_ENV
+
+      - name: Set config secrets
+        shell: bash
+        run: echo "NODE_AUTH_TOKEN=${{ matrix.config.type == 'Github' && secrets.GITHUB_TOKEN || secrets.NPM_WRITE_PACKAGES_AUTOMATION_TOKEN }}" >> $GITHUB_ENV
         
       - name: Build npm package
         uses: ./.github/actions/build
@@ -55,19 +63,13 @@ jobs:
           registry-url: ${{ matrix.config['registry-url'] }}
           scope: ${{ matrix.config['scope'] }}
 
-      - name: Publish npm package to Github
-        if: success() && startsWith(github.ref, 'refs/tags/') && matrix.config.type == 'Github'
+      - name: Publish npm package
+        if: startsWith(github.ref, 'refs/tags/')
         uses: ./.github/actions/publish
         with:
-          type: ${{ matrix.config['type'] }}
+          create-new-release: ${{ matrix.config['create-new-release'] }}
+          publish-args: ${{ matrix.config['publish-args'] }}
+          registry-url: ${{ matrix.config['registry-url'] }}
+          scope: ${{ matrix.config['scope'] }}
           github-token: ${{ secrets.GITHUB_TOKEN }} 
-          node-auth-token: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Publish npm package to NPM
-        if: success() && startsWith(github.ref, 'refs/tags/') && matrix.config.type == 'NPM'
-        uses: ./.github/actions/publish
-        with:
-          type: ${{ matrix.config['type'] }}
-          github-token: ${{ secrets.GITHUB_TOKEN }} 
-          node-auth-token: ${{ secrets.NPM_WRITE_PACKAGES_AUTOMATION_TOKEN }}
-
+          node-auth-token: ${{ env.NODE_AUTH_TOKEN }}
