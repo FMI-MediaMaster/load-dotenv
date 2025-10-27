@@ -1,5 +1,5 @@
 {
-  "name": "@FMI-MediaMaster/load-dotenv",
+  "name": "load-dotenv",
   "description": "Loads .env and NODE_ENV",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
