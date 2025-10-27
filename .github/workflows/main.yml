@@ -50,10 +50,6 @@ jobs:
         run: |
           PNPM_VERSION=$(jq -r '.packageManager | split("@")[1]' package.json)
           echo "PNPM_VERSION=$PNPM_VERSION" >> $GITHUB_ENV
-
-      - name: Set config secrets
-        shell: bash
-        run: echo "NODE_AUTH_TOKEN=${{ matrix.config.type == 'Github' && secrets.GITHUB_TOKEN || secrets.NPM_WRITE_PACKAGES_AUTOMATION_TOKEN }}" >> $GITHUB_ENV
         
       - name: Build npm package
         uses: ./.github/actions/build
@@ -62,6 +58,11 @@ jobs:
           pnpm-version: ${{ env.PNPM_VERSION }}
           registry-url: ${{ matrix.config['registry-url'] }}
           scope: ${{ matrix.config['scope'] }}
+
+      - name: Set config secrets
+        if: startsWith(github.ref, 'refs/tags/')
+        shell: bash
+        run: echo "NODE_AUTH_TOKEN=${{ matrix.config.type == 'Github' && secrets.GITHUB_TOKEN || secrets.NPM_WRITE_PACKAGES_AUTOMATION_TOKEN }}" >> $GITHUB_ENV
 
       - name: Publish npm package
         if: startsWith(github.ref, 'refs/tags/')
