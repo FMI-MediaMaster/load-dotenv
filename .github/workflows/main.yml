@@ -119,7 +119,7 @@ jobs:
           name: Release ${{ env.TAG_NAME }}
           generate_release_notes: true
           body: |
-            **GitHub Packages**: ${{ steps.github-link.outputs.github-link }}
+            **GitHub**: ${{ steps.github-link.outputs.github-link }}
             **NPM**: ${{ steps.npm-link.outputs.npm-link }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
