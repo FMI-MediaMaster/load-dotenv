@@ -8,10 +8,9 @@ inputs:
     required: false
     default: ""
 
-  create-new-release:
-    description: "Creates a new GitHub release using the latest tag"
-    required: false
-    default: 'false'
+  type:
+    description: "Registry type to use (GitHub/NPM)"
+    required: true
 
   registry-url:
     description: "Registry URL to use"
@@ -22,7 +21,7 @@ inputs:
     required: true 
 
   github-token:
-    description: "Github token to use for publishing"
+    description: "Github token"
     required: true
 
   node-auth-token:
@@ -60,12 +59,25 @@ runs:
       env:
         NODE_AUTH_TOKEN: ${{ inputs.node-auth-token }}
 
-    - name: Create GitHub Release
-      uses: softprops/action-gh-release@v2
-      if: ${{ inputs.create-new-release == 'true' }}
-      with:
-        tag_name: ${{ env.TAG_NAME }}
-        name: Release ${{ env.TAG_NAME }}
-        generate_release_notes: true
+    - name: Get publish link
+      shell: bash
       env:
-        GITHUB_TOKEN: ${{ inputs.github-token }}
+        GH_TOKEN=${{ inputs.github-token }}
+      run: |
+        if [[ "${{ inputs.registry-url }}" == *"npm.pkg.github.com"* ]]; then
+          RELEASE_LINK=$(gh api \
+            -H "Accept: application/vnd.github+json" \
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            /orgs/${{ inputs.scope }}/packages/npm/${{ env.PACKAGE_NAME }}/versions \
+            --jq ".[] | select(.name == \"${{ env.TAG_VERSION }}\") | .html_url")
+        else
+          RELEASE_LINK="https://www.npmjs.com/package/${{ inputs.scope }}/${{ env.PACKAGE_NAME }}/v/${{ env.TAG_VERSION }}"
+        fi
+
+        echo "$RELEASE_LINK" > publish-link.txt
+
+    - name: Upload publish link
+      uses: actions/upload-artifact@v4
+      with:
+        name: publish-link-${{ inputs.type }}
+        path: publish-link.txt
