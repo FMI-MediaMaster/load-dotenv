@@ -118,7 +118,7 @@ jobs:
           tag_name: ${{ env.TAG_NAME }}
           name: Release ${{ env.TAG_NAME }}
           generate_release_notes: true
-          append_body: |
+          body: |
             **GitHub Packages**: ${{ steps.github-link.outputs.github-link }}
             **NPM**: ${{ steps.npm-link.outputs.npm-link }}
         env:
