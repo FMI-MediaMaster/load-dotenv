@@ -64,11 +64,14 @@ runs:
       env:
         GH_TOKEN: ${{ inputs.github-token }}
       run: |
+        CLEAN_SCOPE="${{ inputs.scope }}"
+        CLEAN_SCOPE="${CLEAN_SCOPE:1}"
+
         if [[ "${{ inputs.registry-url }}" == *"npm.pkg.github.com"* ]]; then
           RELEASE_LINK=$(gh api \
             -H "Accept: application/vnd.github+json" \
             -H "X-GitHub-Api-Version: 2022-11-28" \
-            /orgs/${{ inputs.scope }}/packages/npm/${{ env.PACKAGE_NAME }}/versions \
+            /orgs/${CLEAN_SCOPE}/packages/npm/${{ env.PACKAGE_NAME }}/versions \
             --jq ".[] | select(.name == \"${{ env.TAG_VERSION }}\") | .html_url")
         else
           RELEASE_LINK="https://www.npmjs.com/package/${{ inputs.scope }}/${{ env.PACKAGE_NAME }}/v/${{ env.TAG_VERSION }}"
