@@ -1,6 +1,6 @@
-name: 'Publish npm package package to npm and GitHub Packages Registry'
+name: 'Publish npm package package to NPM/GitHub Packages Registry'
 
-description: 'Builds the package, sets the version from the Git tag, creates a GitHub release, and publishes the package to the GitHub Packages Registry.'
+description: 'Builds the package, sets the version from the Git tag, creates a GitHub release, and publishes the package to the NPM/GitHub Packages Registry.'
 
 inputs:
   publish-args:
