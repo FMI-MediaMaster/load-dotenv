@@ -22,7 +22,7 @@ jobs:
       fail-fast: false
       matrix:
         config:
-          - type: 'Github'
+          - type: 'GitHub'
             registry-url: 'https://npm.pkg.github.com'
             scope: '@FMI-MediaMaster'
             publish-args: ""
