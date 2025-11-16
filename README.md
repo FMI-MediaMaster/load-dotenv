@@ -1,5 +1,5 @@
-# Exports `.env` and NODE_ENV to an object
-
+# load-dotenv
+Exports `.env` and NODE_ENV to an object
 ```js
 import config from '@FMI-MediaMaster/load-dotenv';
 
